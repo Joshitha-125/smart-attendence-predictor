@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Smart Attendance Predictor</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased min-h-screen flex flex-col">
+
+  <!-- TOP BAR: Prototype Fidelity Switcher & Demo Helper -->
+  <header class="prototype-nav-bar bg-white border-b border-slate-200 sticky top-0 z-50 shadow-xs">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-14">
+        <!-- Logo -->
+        <div class="flex items-center gap-3">
+          <span class="text-2xl" role="img" aria-label="Graduation Cap">🎓</span>
+          <div>
+            <span class="text-lg font-bold text-blue-700 tracking-tight flex items-center gap-1.5 cursor-pointer" onclick="navigateTo('dashboard')">
+              Smart Attendance Predictor
+            </span>
+          </div>
+        </div>
+
+        <!-- Mobile Page Selector for small screens -->
+        <div class="flex md:hidden items-center">
+          <select id="mobile-page-select" onchange="navigateTo(this.value)" class="text-xs bg-slate-100 border border-slate-300 rounded-md px-2 py-1 text-slate-700 font-semibold outline-none">
+            <option value="login">P1: Login</option>
+            <option value="dashboard" selected>P2: Dashboard</option>
+            <option value="attendance">P3: Attendance</option>
+            <option value="predictor">P4: Predictor</option>
+            <option value="subjects">P5: Subjects</option>
+            <option value="reports">P6: Reports</option>
+            <option value="profile">P7: Profile</option>
+            <option value="settings">P8: Settings</option>
+          </select>
+        </div>
+
+        <!-- Page Jump Bar matching all 8 prototype pages (Desktop/Tablet) -->
+        <nav class="hidden md:flex items-center gap-1 bg-slate-100 p-1 rounded-lg border border-slate-200 text-xs font-medium">
+          <button onclick="navigateTo('login')" class="page-tab px-2.5 py-1.5 rounded-md transition text-slate-600 hover:text-blue-700" id="tab-login" title="Page 1: Student Portal Login">P1: Login</button>
+          <button onclick="navigateTo('dashboard')" class="page-tab px-2.5 py-1.5 rounded-md transition text-slate-600 hover:text-blue-700" id="tab-dashboard" title="Page 2: Main Dashboard">P2: Dashboard</button>
+          <button onclick="navigateTo('attendance')" class="page-tab px-2.5 py-1.5 rounded-md transition text-slate-600 hover:text-blue-700" id="tab-attendance" title="Page 3: My Attendance Logs">P3: Attendance</button>
+          <button onclick="navigateTo('predictor')" class="page-tab px-2.5 py-1.5 rounded-md transition text-slate-600 hover:text-blue-700" id="tab-predictor" title="Page 4: What-If Predictor">P4: Predictor</button>
+          <button onclick="navigateTo('subjects')" class="page-tab px-2.5 py-1.5 rounded-md transition text-slate-600 hover:text-blue-700" id="tab-subjects" title="Page 5: Enrolled Subjects">P5: Subjects</button>
+          <button onclick="navigateTo('reports')" class="page-tab px-2.5 py-1.5 rounded-md transition text-slate-600 hover:text-blue-700" id="tab-reports" title="Page 6: Reports & Clearance">P6: Reports</button>
+          <button onclick="navigateTo('profile')" class="page-tab px-2.5 py-1.5 rounded-md transition text-slate-600 hover:text-blue-700" id="tab-profile" title="Page 7: Student Profile">P7: Profile</button>
+          <button onclick="navigateTo('settings')" class="page-tab px-2.5 py-1.5 rounded-md transition text-slate-600 hover:text-blue-700" id="tab-settings" title="Page 8: Settings">P8: Settings</button>
+        </nav>
+
+        <!-- User / Session Action -->
+        <div class="flex items-center gap-3">
+          <div id="user-pill" class="flex items-center gap-2 px-3 py-1 bg-blue-50 border border-blue-200 text-blue-800 rounded-full text-xs font-semibold">
+            <span class="w-2 h-2 rounded-full bg-emerald-500 pulse-dot"></span>
+            <span id="user-pill-name">Alex Morgan</span>
+            <span class="text-blue-400">|</span>
+            <span id="user-pill-id">CS-2023-8941</span>
+          </div>
+          <button id="auth-btn" onclick="toggleAuth()" class="text-xs px-3 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 font-medium rounded-md border border-slate-300 transition">
+            Sign Out
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- SCREEN CONTAINER: Reproduces the PDF Prototype Screen Layout with Exact Header, Divider, Screen Purpose & Content -->
+  <main class="flex-1 max-w-5xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6">
+    <div id="prototype-sheet" class="bg-white rounded-2xl shadow-sm border border-slate-200/90 p-6 sm:p-8 relative">
+
+      <!-- PROTOTYPE HEADER ROW -->
+      <div class="flex items-center justify-between pb-3">
+        <div class="flex items-center gap-2">
+          <span class="text-xl">🎓</span>
+          <span id="proto-app-title" class="font-bold text-blue-700 text-lg">Smart Attendance</span>
+        </div>
+        <div>
+          <span id="proto-page-badge" class="px-3 py-1 rounded-md bg-indigo-50 border border-indigo-200/80 text-indigo-700 text-xs font-bold uppercase tracking-wider">
+            PAGE 2 • MAIN DASHBOARD & OPTIONS HUB
+          </span>
+        </div>
+      </div>
+
+      <!-- BLUE SEPARATOR BAR -->
+      <div class="h-0.5 bg-indigo-900/90 w-full mb-4"></div>
+
+      <!-- SCREEN PURPOSE CALLOUT -->
+      <div id="proto-purpose-box" class="flex items-start bg-slate-50 border-l-4 border-indigo-600 rounded-r-lg p-3.5 mb-6 text-xs text-slate-700 leading-relaxed">
+        <span class="font-bold text-slate-900 mr-1.5 uppercase tracking-wide">SCREEN PURPOSE:</span>
+        <span id="proto-purpose-text">Post-Login Navigation Hub — Gives immediate access to key app functions (Subjects, My Attendance, Predictor, Reports, Profile, Settings) along with top-level stats.</span>
+      </div>
+
+      <!-- DYNAMIC PAGE CONTENT CONTAINER -->
+      <div id="screen-mount">
+        <!-- Rendered dynamically by app.js based on active route -->
+      </div>
+
+      <!-- PROTOTYPE FOOTER ROW -->
+      <div class="mt-12 pt-4 border-t border-slate-200/80 flex items-center justify-between text-xs text-slate-400">
+        <div>Smart Attendance Predictor • Screen Architecture</div>
+        <div id="proto-page-number">Page 2 of 8</div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- MODALS CONTAINER -->
+  <div id="modal-container" class="hidden"></div>
+
+  <!-- TOAST NOTIFICATION CONTAINER -->
+  <div id="toast-container" class="fixed bottom-6 right-6 z-50 flex flex-col gap-2 pointer-events-none"></div>
+
+  <!-- APPLICATION CODE -->
+  <script src="app.js"></script>
+</body>
+</html>
