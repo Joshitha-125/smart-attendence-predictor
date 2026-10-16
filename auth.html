@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#123d34">
+  <title>Sign in | Smart Attendance</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="auth-page">
+    <section class="auth-aside" aria-label="Smart Attendance overview">
+      <a class="auth-brand" href="index.html" style="color: inherit; text-decoration: none">Smart Attendance / Student portal</a>
+      <div>
+        <span class="auth-kicker">Know where you stand</span>
+        <h1>Make every class count.</h1>
+        <p>Keep your attendance, semester outlook, and academic plans in one clear place.</p>
+        <div class="auth-stat"><strong>78%</strong><span>Sample semester attendance, tracked at a glance.</span></div>
+      </div>
+      <span class="auth-kicker">Your semester, in focus</span>
+    </section>
+    <section class="auth-main">
+      <div class="auth-panel">
+        <a class="auth-back" href="index.html">← Back to dashboard</a>
+        <h2 id="auth-heading">Welcome back</h2>
+        <p class="auth-subtitle" id="auth-subtitle">Sign in to continue to your attendance dashboard.</p>
+        <div class="auth-switch" role="tablist" aria-label="Authentication options">
+          <button type="button" id="signin-tab" role="tab" aria-selected="true">Sign in</button>
+          <button type="button" id="signup-tab" role="tab" aria-selected="false">Create account</button>
+        </div>
+        <div id="auth-error" class="auth-error" role="alert" hidden></div>
+        <form id="auth-form" class="auth-form" novalidate>
+          <label id="name-field" hidden>Full name
+            <input class="proto-input" type="text" id="auth-name" autocomplete="name" placeholder="Your name">
+          </label>
+          <label id="student-id-field" hidden>Student ID
+            <input class="proto-input" type="text" id="auth-student-id" autocomplete="username" placeholder="e.g. CS-2026-1042">
+          </label>
+          <label>Email address
+            <input class="proto-input" type="email" id="auth-email" autocomplete="email" placeholder="you@university.edu" required>
+          </label>
+          <label>Password
+            <input class="proto-input" type="password" id="auth-password" autocomplete="current-password" placeholder="At least 6 characters" required minlength="6">
+          </label>
+          <button class="auth-submit" id="auth-submit" type="submit">Sign in to dashboard</button>
+        </form>
+        <div class="auth-demo" id="auth-demo">
+          Demo account: alex.morgan@university.edu / student123
+          <button type="button" id="fill-demo">Use demo account</button>
+        </div>
+        <p class="auth-legal">New accounts are stored in this browser for this prototype.</p>
+      </div>
+    </section>
+  </main>
+  <script src="auth.js"></script>
+</body>
+</html>

@@ -12,13 +12,15 @@ A student attendance management and prediction system reproducing the 8-page pro
 | Page # | Prototype Title | Route | Description & Features |
 |---|---|---|---|
 | **Page 1** | **Student Portal Login** | `login` | Authentication gateway, student credential login, feature highlights list, active demo session indicator. |
-| **Page 2** | **Main Dashboard & Options Hub** | `dashboard` | Welcome banner, 78.0% aggregate attendance, dynamic `OVERALL: SAFE` badge, 6 navigation cards, Quick Subject Summary table. |
+| **Page 2** | **Main Dashboard & Options Hub** | `dashboard` | Welcome banner, 78.0% aggregate attendance, dynamic `OVERALL: SAFE` badge, 8 navigation cards, Today's Schedule with "Ongoing Now" / "Next Class", Today's Events & Upcoming Deadlines, Quick Subject Summary table. |
 | **Page 3** | **My Attendance Option** | `attendance` | Daily attendance log with timestamps, professors, `PRESENT`/`ABSENT` badges, interactive discrepancy correction request modal. |
-| **Page 4** | **"What-If" Predictive Calculator** | `predictor` | Real-time predictive simulation inputs (156 attended, 200 conducted, 30 remaining, 25 intended), dynamic projected end attendance (78.7%), smart recommendation engine. |
-| **Page 5** | **Enrolled Subjects Option** | `subjects` | 4 subject cards with status badges, percentages, syllabus completion progress bars, professor contact mailto links. |
+| **Page 4** | **"What-If" Predictive Calculator** | `predictor` | Real-time predictive simulation inputs (156 attended, 200 conducted, 30 remaining, 25 intended), dynamic projected end attendance (78.7%), smart recommendation engine, and subject-wise timetable impact breakdown. |
+| **Page 5** | **Enrolled Subjects Option** | `subjects` | 4 subject cards with status badges, percentages, syllabus completion progress bars, professor contact mailto links, weekly schedule slots, and "Can I Skip?" simulation triggers. |
 | **Page 6** | **Reports & Clearance Option** | `reports` | Official report logs table, working CSV download, official printable PDF transcript generator, examination hall-ticket clearance status and admit card modal. |
 | **Page 7** | **Student Profile Option** | `profile` | Personal details (Alex Morgan, CS-2023-8941), academic record (GPA 3.82, Semester 5, Dr. Alan Kay), enrolled electives and lab courses. |
 | **Page 8** | **Application Settings & Thresholds** | `settings` | Configurable minimum attendance threshold (default 75.0%), early warning buffer (+3.0%), email alerts toggle, university database synchronization simulation. |
+| **Feature 9** | **Timetable Management & Planner** | `timetable` | Monday–Saturday weekly class schedule grid, day tabs, add/edit/delete class with time-overlap prevention, weekly attend/skip simulator, live aggregate impact preview. |
+| **Feature 10** | **Academic Calendar & Deadlines** | `calendar` | Interactive monthly calendar view with month navigation, click date to add event, event categories (Exams, Assignments, Holidays, Reminders, Classes), completion status toggle, dynamic urgency countdowns. |
 
 ---
 
@@ -106,3 +108,47 @@ $$\text{Projected End Attendance } \% = \left(\frac{\text{Projected Attended}}{\
    - **Hall Ticket Admit Card:** Generates a printable exam admit card with schedule, examination hall, and clearance stamp.
 4. **Registrar Synchronization (Page 8):** Click `Sync Now` to run a simulated background synchronization with animated spinner and live timestamp update.
 5. **Persistence:** All edits, simulation inputs, discrepancy requests, and settings persist across page reloads via `localStorage`.
+
+---
+
+## 📅 Timetable Management & Attendance Planning
+
+- **Weekly Schedule Grid (Mon–Sat):** Clean calendar cards showing time slot, subject code, room, faculty, class type badge (`Lecture`, `Lab`, `Tutorial`), and quick action buttons.
+- **Smart Overlap Detection:** Validates incoming entries against existing class timings on the same day (`findTimeConflict`) to avoid accidental double-booking.
+- **"Can I Skip This Class?" Simulation:**
+  - Evaluates immediate attendance drop: $\text{Current \%} \to \text{If Missed \%}$.
+  - Computes remaining safe misses and warning buffers.
+  - Actionable advice: tells student whether skipping triggers risk or is safe.
+- **Interactive Weekly Planner:**
+  - Toggle attend/skip for every scheduled class this week.
+  - Dynamically recalculates the aggregate semester attendance and warns if planned skips breach the $75\%$ threshold.
+
+---
+
+## 🗓️ Academic Calendar & Deadlines
+
+- **Monthly Calendar Matrix:** `< Previous Month | Month Year | Next Month >` with a `Today` button, highlighting the active day.
+- **Multi-Category Events:**
+  - `Class`, `Exam`, `Assignment`, `Project`, `Holiday`, `Attendance Reminder`, `College Event`, `Personal Study Reminder`, `Other`.
+- **Integrated Timetable Sync:** Classes from the student's timetable automatically render as clean class badges on the respective days of the month without polluting persistent event data.
+- **Click-to-Add & Agenda View:** Click any date cell to view that day's agenda or immediately open the pre-filled Add Event modal.
+- **Deadlines & Assignment Tracker:** Chronological deadline countdown (e.g., "Due in 2 days", "Overdue") with interactive "Mark Done" / "Reopen" completion toggles.
+- **Filterable:** Real-time filtering by Event Type and Enrolled Subject.
+
+---
+
+## ☁️ Deployment to Vercel
+
+The application is pre-configured for instant zero-config deployment to Vercel via `vercel.json`:
+
+```bash
+# 1. Install Vercel CLI (if not already installed)
+npm i -g vercel
+
+# 2. Deploy directly from the project directory
+cd /path/to/project
+vercel --prod
+```
+
+Or connect the repository on [vercel.com](https://vercel.com) and deploy with default static settings.
+

@@ -19,7 +19,7 @@
         <div class="flex items-center gap-3">
           <span class="text-2xl" role="img" aria-label="Graduation Cap">🎓</span>
           <div>
-            <span class="text-lg font-bold text-blue-700 tracking-tight flex items-center gap-1.5 cursor-pointer" onclick="navigateTo('dashboard')">
+            <span class="text-lg font-bold text-teal-700 tracking-tight flex items-center gap-1.5 cursor-pointer" onclick="navigateTo('dashboard')">
               Smart Attendance Predictor
             </span>
           </div>
@@ -36,27 +36,31 @@
             <option value="reports">P6: Reports</option>
             <option value="profile">P7: Profile</option>
             <option value="settings">P8: Settings</option>
+            <option value="timetable">📅 Timetable & Planner</option>
+            <option value="calendar">🗓️ Academic Calendar</option>
           </select>
         </div>
 
-        <!-- Page Jump Bar matching all 8 prototype pages (Desktop/Tablet) -->
+        <!-- Page Jump Bar matching all prototype pages (Desktop/Tablet) -->
         <nav class="hidden md:flex items-center gap-1 bg-slate-100 p-1 rounded-lg border border-slate-200 text-xs font-medium">
-          <button onclick="navigateTo('login')" class="page-tab px-2.5 py-1.5 rounded-md transition text-slate-600 hover:text-blue-700" id="tab-login" title="Page 1: Student Portal Login">P1: Login</button>
-          <button onclick="navigateTo('dashboard')" class="page-tab px-2.5 py-1.5 rounded-md transition text-slate-600 hover:text-blue-700" id="tab-dashboard" title="Page 2: Main Dashboard">P2: Dashboard</button>
-          <button onclick="navigateTo('attendance')" class="page-tab px-2.5 py-1.5 rounded-md transition text-slate-600 hover:text-blue-700" id="tab-attendance" title="Page 3: My Attendance Logs">P3: Attendance</button>
-          <button onclick="navigateTo('predictor')" class="page-tab px-2.5 py-1.5 rounded-md transition text-slate-600 hover:text-blue-700" id="tab-predictor" title="Page 4: What-If Predictor">P4: Predictor</button>
-          <button onclick="navigateTo('subjects')" class="page-tab px-2.5 py-1.5 rounded-md transition text-slate-600 hover:text-blue-700" id="tab-subjects" title="Page 5: Enrolled Subjects">P5: Subjects</button>
-          <button onclick="navigateTo('reports')" class="page-tab px-2.5 py-1.5 rounded-md transition text-slate-600 hover:text-blue-700" id="tab-reports" title="Page 6: Reports & Clearance">P6: Reports</button>
-          <button onclick="navigateTo('profile')" class="page-tab px-2.5 py-1.5 rounded-md transition text-slate-600 hover:text-blue-700" id="tab-profile" title="Page 7: Student Profile">P7: Profile</button>
-          <button onclick="navigateTo('settings')" class="page-tab px-2.5 py-1.5 rounded-md transition text-slate-600 hover:text-blue-700" id="tab-settings" title="Page 8: Settings">P8: Settings</button>
+          <button onclick="window.location.href='auth.html'" class="page-tab px-2.5 py-1.5 rounded-md transition text-slate-600 hover:text-teal-700" id="tab-login" title="Open sign in and sign up">Account</button>
+          <button onclick="navigateTo('dashboard')" class="page-tab px-2.5 py-1.5 rounded-md transition text-slate-600 hover:text-teal-700" id="tab-dashboard" title="Page 2: Main Dashboard">P2: Dashboard</button>
+          <button onclick="navigateTo('attendance')" class="page-tab px-2.5 py-1.5 rounded-md transition text-slate-600 hover:text-teal-700" id="tab-attendance" title="Page 3: My Attendance Logs">P3: Attendance</button>
+          <button onclick="navigateTo('predictor')" class="page-tab px-2.5 py-1.5 rounded-md transition text-slate-600 hover:text-teal-700" id="tab-predictor" title="Page 4: What-If Predictor">P4: Predictor</button>
+          <button onclick="navigateTo('subjects')" class="page-tab px-2.5 py-1.5 rounded-md transition text-slate-600 hover:text-teal-700" id="tab-subjects" title="Page 5: Enrolled Subjects">P5: Subjects</button>
+          <button onclick="navigateTo('reports')" class="page-tab px-2.5 py-1.5 rounded-md transition text-slate-600 hover:text-teal-700" id="tab-reports" title="Page 6: Reports & Clearance">P6: Reports</button>
+          <button onclick="navigateTo('profile')" class="page-tab px-2.5 py-1.5 rounded-md transition text-slate-600 hover:text-teal-700" id="tab-profile" title="Page 7: Student Profile">P7: Profile</button>
+          <button onclick="navigateTo('settings')" class="page-tab px-2.5 py-1.5 rounded-md transition text-slate-600 hover:text-teal-700" id="tab-settings" title="Page 8: Settings">P8: Settings</button>
+          <button onclick="navigateTo('timetable')" class="page-tab px-2.5 py-1.5 rounded-md transition text-slate-600 hover:text-teal-700" id="tab-timetable" title="Timetable & Weekly Planner">📅 Timetable</button>
+          <button onclick="navigateTo('calendar')" class="page-tab px-2.5 py-1.5 rounded-md transition text-slate-600 hover:text-teal-700" id="tab-calendar" title="Academic Calendar">🗓️ Calendar</button>
         </nav>
 
         <!-- User / Session Action -->
         <div class="flex items-center gap-3">
-          <div id="user-pill" class="flex items-center gap-2 px-3 py-1 bg-blue-50 border border-blue-200 text-blue-800 rounded-full text-xs font-semibold">
+          <div id="user-pill" class="flex items-center gap-2 px-3 py-1 bg-teal-50 border border-teal-200 text-teal-800 rounded-full text-xs font-semibold">
             <span class="w-2 h-2 rounded-full bg-emerald-500 pulse-dot"></span>
             <span id="user-pill-name">Alex Morgan</span>
-            <span class="text-blue-400">|</span>
+            <span class="text-teal-400">|</span>
             <span id="user-pill-id">CS-2023-8941</span>
           </div>
           <button id="auth-btn" onclick="toggleAuth()" class="text-xs px-3 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 font-medium rounded-md border border-slate-300 transition">
@@ -75,20 +79,20 @@
       <div class="flex items-center justify-between pb-3">
         <div class="flex items-center gap-2">
           <span class="text-xl">🎓</span>
-          <span id="proto-app-title" class="font-bold text-blue-700 text-lg">Smart Attendance</span>
+          <span id="proto-app-title" class="font-bold text-teal-700 text-lg">Smart Attendance</span>
         </div>
         <div>
-          <span id="proto-page-badge" class="px-3 py-1 rounded-md bg-indigo-50 border border-indigo-200/80 text-indigo-700 text-xs font-bold uppercase tracking-wider">
+          <span id="proto-page-badge" class="px-3 py-1 rounded-md bg-teal-50 border border-teal-200/80 text-teal-700 text-xs font-bold uppercase tracking-wider">
             PAGE 2 • MAIN DASHBOARD & OPTIONS HUB
           </span>
         </div>
       </div>
 
       <!-- BLUE SEPARATOR BAR -->
-      <div class="h-0.5 bg-indigo-900/90 w-full mb-4"></div>
+      <div class="h-0.5 bg-teal-900/90 w-full mb-4"></div>
 
       <!-- SCREEN PURPOSE CALLOUT -->
-      <div id="proto-purpose-box" class="flex items-start bg-slate-50 border-l-4 border-indigo-600 rounded-r-lg p-3.5 mb-6 text-xs text-slate-700 leading-relaxed">
+      <div id="proto-purpose-box" class="flex items-start bg-slate-50 border-l-4 border-teal-600 rounded-r-lg p-3.5 mb-6 text-xs text-slate-700 leading-relaxed">
         <span class="font-bold text-slate-900 mr-1.5 uppercase tracking-wide">SCREEN PURPOSE:</span>
         <span id="proto-purpose-text">Post-Login Navigation Hub — Gives immediate access to key app functions (Subjects, My Attendance, Predictor, Reports, Profile, Settings) along with top-level stats.</span>
       </div>
@@ -115,5 +119,6 @@
 
   <!-- APPLICATION CODE -->
   <script src="app.js"></script>
+  <script src="auth-bridge.js"></script>
 </body>
 </html>
